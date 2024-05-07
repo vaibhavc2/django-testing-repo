@@ -1,0 +1,32 @@
+{% for photo in photos %}
+<div>
+  <img src="{{ photo.image.url }}" alt="{{ photo.title }}" />
+  <button class="bookmark" data-photo-id="{{ photo.photo_id }}">
+    Bookmark
+  </button>
+</div>
+{% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(".bookmark").click(function () {
+    var button = $(this);
+    var photo_id = button.data("photo-id");
+    $.ajax({
+      url: "/add_bookmark/",
+      type: "post",
+      data: JSON.stringify({ photo_id: photo_id }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      },
+      success: function (response) {
+        if (response.status == "ok") {
+          button.text("Bookmarked");
+        }
+      },
+    });
+  });
+</script>
+{% csrf_token %}
+<script>
+  var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+</script>

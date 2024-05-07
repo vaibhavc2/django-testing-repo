@@ -1,0 +1,7 @@
+<ul>
+  {% for recommendation in recommendations %}
+  <li>{{ recommendation }}</li>
+  {% empty %}
+  <li>No recommendations at this time.</li>
+  {% endfor %}
+</ul>

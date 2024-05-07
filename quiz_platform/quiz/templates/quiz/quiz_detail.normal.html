@@ -1,0 +1,8 @@
+<h1>{{ quiz.title }}</h1>
+<p>{{ quiz.description }}</p>
+
+{% for question in quiz.question_set.all %}
+<h2>{{ question.text }}</h2>
+{% for answer in question.answer_set.all %}
+<p>{{ answer.text }}</p>
+{% endfor %} {% endfor %}

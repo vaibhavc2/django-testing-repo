@@ -1,0 +1,10 @@
+{% for task in tasks %}
+<h2><a href="{% url 'task_detail' task.id %}">{{ task.title }}</a></h2>
+<p>
+  {{ task.title }} {% if not task.completed %}<a
+    href="{% url 'complete_task' task.id %}"
+    >Complete</a
+  >{% endif %}
+</p>
+<p>{{ task.description }}</p>
+{% endfor %}

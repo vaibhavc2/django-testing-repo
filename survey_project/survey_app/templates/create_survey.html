@@ -1,0 +1,32 @@
+<form method="post" id="surveyForm">
+  {% csrf_token %} {{ form.as_p }}
+  <div id="questionContainer">
+    <!-- Questions will be added here -->
+  </div>
+  <button type="button" id="addQuestion">Add Question</button>
+  <button type="button" id="removeQuestion">Remove Question</button>
+  <button type="submit">Submit</button>
+</form>
+<!-- scripts -->
+<script>
+  let questionIndex = 0;
+
+  document.getElementById("addQuestion").addEventListener("click", function () {
+    const questionContainer = document.getElementById("questionContainer");
+    const newQuestion = document.createElement("input");
+    newQuestion.type = "text";
+    newQuestion.name = "question" + questionIndex;
+    questionContainer.appendChild(newQuestion);
+    questionIndex++;
+  });
+
+  document
+    .getElementById("removeQuestion")
+    .addEventListener("click", function () {
+      const questionContainer = document.getElementById("questionContainer");
+      if (questionContainer.childNodes.length > 0) {
+        questionContainer.removeChild(questionContainer.lastChild);
+        questionIndex--;
+      }
+    });
+</script>

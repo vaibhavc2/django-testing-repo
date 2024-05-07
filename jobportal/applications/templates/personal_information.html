@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Personal Information</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Personal Information</h2>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Next</button>
+      </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("form").submit(function (event) {
+          var isValid = true;
+          $("input").each(function () {
+            if ($(this).val() === "") {
+              isValid = false;
+              alert("Please fill all the fields");
+              return false; // break the loop
+            }
+          });
+
+          if (!isValid) {
+            event.preventDefault(); // prevent form submission
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

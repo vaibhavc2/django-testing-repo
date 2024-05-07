@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+form p {
+  margin-bottom: 10px;
+}
+
+form button {
+  margin-top: 10px;
+}
